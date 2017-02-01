@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Youtube download</title>
+  <meta name="description" content="Youtube download">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+        <center>
+		<form action="/button" method="post">
+			Youtube video/channe/playlist: <input name="id" type="text" />
+            <input value="Download" type="submit" />
+        </form>
+		</center>
+<script>
+
+var get_status_message = function () {
+  $.getJSON('localhost/status', function(data) {
+    console.log(data)
+});
+};
+
+var timer = setInterval(get_status_message, 100);
+</script>
+</body>
+</html>
