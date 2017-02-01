@@ -9,6 +9,7 @@ import pafy
 import zipfile
 import Queue
 import os, sys, re, platform, time
+import config
 from subprocess import call
 from bottle import route, run, get, post, request, static_file, redirect
 import sys
@@ -26,13 +27,10 @@ stats = Queue()
 # tab of
 #   https://cloud.google.com/console
 # Please ensure that you have enabled the YouTube Data API for your project.
-DEVELOPER_KEY = "AIzaSyCKM-VT2P72mzXb5XqVHljvS_lZuOuh4-k"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
-youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
-
-
+youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=config.DEVELOPER_KEY)
 
 def clearScreen():
   if platform.system() == 'Linux':
@@ -92,7 +90,7 @@ def downloadSong(video, path, currentNum, lastNum):
   return title
 
 def youtube_search(options):
-  youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+  youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=config.DEVELOPER_KEY)
   if options["video"] and options["channel"] == True:
     print "Getting video info"
     status = check_youtube_video(youtube, options["video"])
